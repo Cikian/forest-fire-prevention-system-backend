@@ -469,10 +469,10 @@
         </profile>
         <!-- 测试 -->
         <profile>
-            <id>test</id>
+            <id>online</id>
             <properties>
                 <!--当前环境-->
-                <profile.name>test</profile.name>
+                <profile.name>online</profile.name>
 				<!--Nacos服务地址-->
                 <config.server-addr>jeecg-boot-nacos:8848</config.server-addr>
             </properties>
