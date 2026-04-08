@@ -84,6 +84,23 @@ public class SlfhDroneTaskDTO implements Serializable {
 	@Excel(name = "备注", width = 15)
     @ApiModelProperty(value = "备注")
     private String remark;
+	/**所属组织*/ //add by njli 2026.4.2
+	@Excel(name = "所属组织", width = 15)
+	@ApiModelProperty(value = "所属组织")
+	private String sysOrgCode;
+	/**执行周期*/ //add by njli 2026.4.2
+	@Excel(name = "执行周期", width = 15)
+	@ApiModelProperty(value = "执行周期")
+	private String executionCycle;
+	/**执行日期*/ //add by njli 2026.4.2
+	@Excel(name = "执行日期", width = 15)
+	@ApiModelProperty(value = "执行日期")
+	private String executionDates;
+	/**执行时间*/ //add by njli 2026.4.2
+	@Excel(name = "执行时间", width = 15)
+	@ApiModelProperty(value = "执行时间")
+	private String executionTime;
+
 
 	// 航线id列表
 	private List<String> routeIds;

@@ -29,7 +29,7 @@ import org.jeecg.common.aspect.annotation.AutoLog;
  */
 @Api(tags="航线表")
 @RestController
-@RequestMapping("/fly/route")
+@RequestMapping("/slfh/route")
 @Slf4j
 public class SlfhDroneRouteController extends JeecgController<SlfhDroneRoute, ISlfhDroneRouteService> {
 	@Autowired

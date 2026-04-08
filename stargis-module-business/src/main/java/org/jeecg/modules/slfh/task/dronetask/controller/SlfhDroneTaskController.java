@@ -32,7 +32,7 @@ import org.jeecg.modules.slfh.task.dronetask.vo.SlfhDroneTaskVO;
  */
 @Api(tags="任务表")
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/slfh/task")
 @Slf4j
 public class SlfhDroneTaskController extends JeecgController<SlfhDroneTask, ISlfhDroneTaskService> {
 	@Autowired

@@ -76,6 +76,15 @@ public class SlfhDroneTaskVO implements Serializable {
     @ApiModelProperty(value = "所属部门")
     private String sysOrgCode;
 
+    /**执行周期*/ //add by njli 2026.4.2
+    @ApiModelProperty(value = "执行周期")
+    private String executionCycle;
+    /**执行日期*/ //add by njli 2026.4.2
+    @ApiModelProperty(value = "执行日期")
+    private String executionDates;
+    /**执行时间*/ //add by njli 2026.4.2
+    @ApiModelProperty(value = "执行时间")
+    private String executionTime;
     //===============================================================
 
     /**任务类型：巡检/航拍/应急…（可选字段）*/

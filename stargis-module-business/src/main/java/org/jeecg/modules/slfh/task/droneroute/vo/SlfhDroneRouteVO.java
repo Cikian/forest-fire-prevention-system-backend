@@ -42,7 +42,7 @@ public class SlfhDroneRouteVO implements Serializable {
 	@Dict(dicCode = "route_type")
 	@Excel(name = "航线类型（起飞/作业/返航/自定义）", width = 15)
     @ApiModelProperty(value = "航线类型（起飞/作业/返航/自定义）")
-    private int routeType;
+    private Integer routeType;
 	/**路线数据*/
 	@Excel(name = "路线数据", width = 15)
     @ApiModelProperty(value = "路线数据")

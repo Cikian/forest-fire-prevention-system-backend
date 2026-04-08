@@ -125,7 +125,7 @@ public class SlfhDroneTaskServiceImpl extends ServiceImpl<SlfhDroneTaskMapper, S
         slfhDroneTask.setCreateTime(new DateTime());
         LoginUser sysUser = (LoginUser) SecurityUtils.getSubject().getPrincipal();
         slfhDroneTask.setCreateBy(sysUser != null ? sysUser.getUsername() : "admin");
-        slfhDroneTask.setSysOrgCode(sysUser != null ? sysUser.getOrgCode() : null);
+        //slfhDroneTask.setSysOrgCode(sysUser != null ? sysUser.getOrgCode() : null);//change by njli 2026.4.1此处应该存设备所属组织。
         this.save(slfhDroneTask);
         // 存关联
         String taskId = slfhDroneTask.getId();
