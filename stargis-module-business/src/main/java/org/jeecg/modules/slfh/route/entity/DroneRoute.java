@@ -88,10 +88,10 @@ public class DroneRoute implements Serializable {
     @ApiModelProperty(value = "航线算法")
     private String algorithm;
     /**
-     * 航线算法
+     * 高度类型
      */
-    @Excel(name = "航线算法", width = 15)
-    @ApiModelProperty(value = "航线算法")
+    @Excel(name = "高度类型", width = 15)
+    @ApiModelProperty(value = "高度类型")
     private String routeHeightType;
     /**
      * 起飞高度

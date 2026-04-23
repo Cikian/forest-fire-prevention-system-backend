@@ -26,6 +26,7 @@
     </scm>
     <properties>
         <druid.version>1.2.11</druid.version>
+        <cloud-sdk.revision>1.14.0</cloud-sdk.revision>
         <jwt.version>3.12.1</jwt.version>
         <minio.version>8.3.7</minio.version>
         <okhttp3.version>4.9.1</okhttp3.version>
@@ -40,7 +41,7 @@
         <dependency>
             <groupId>org.jeecgframework.boot</groupId>
             <artifactId>dji-cloud-sdk</artifactId>
-            <version>1.0.3</version>
+            <version>1.14.0</version>
         </dependency>
         <!-- JEECG 核心 -->
         <dependency>

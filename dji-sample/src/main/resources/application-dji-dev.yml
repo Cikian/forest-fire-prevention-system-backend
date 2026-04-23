@@ -1,0 +1,99 @@
+mqtt:
+  # @see com.dji.sample.component.mqtt.model.MqttUseEnum
+  # BASIC parameters are required.
+  BASIC:
+    protocol: MQTT # @see com.dji.sample.component.mqtt.model.MqttProtocolEnum
+    host: 140.143.140.103
+    port: 1883
+    username: JavaM
+    password: 123456
+    client-id: JavaM
+    # If the protocol is ws/wss, this value is required.
+    path:
+  DRC:
+    protocol: WS # @see com.dji.sample.component.mqtt.model.MqttProtocolEnum
+    host: 140.143.140.103
+    port: 8083
+    path: /mqtt
+    username: JavaWs
+    password: 123456
+
+cloud-sdk:
+  mqtt:
+    # Topics that need to be subscribed when initially connecting to mqtt, multiple topics are divided by ",".
+    inbound-topic: sys/product/+/status,thing/product/+/requests,thing/product/+/osd,thing/product/+/get
+
+url:
+  manage:
+    prefix: dji/manage
+    version: /api/v1
+  map:
+    prefix: dji/map
+    version: /api/v1
+  media:
+    prefix: dji/media
+    version: /api/v1
+  wayline:
+    prefix: dji/wayline
+    version: /api/v1
+  storage:
+    prefix: dji/storage
+    version: /api/v1
+  control:
+    prefix: dji/control
+    version: /api/v1
+
+# Tutorial: https://www.alibabacloud.com/help/en/object-storage-service/latest/use-a-temporary-credential-provided-by-sts-to-access-oss
+oss:
+  enable: true
+  provider: ALIYUN # @see com.dji.sample.component.OssConfiguration.model.enums.OssTypeEnum
+  endpoint: https://oss-cn-beijing.aliyuncs.com
+  access-key: LTAI5t7dWXfZQJQShqtYzu81
+  secret-key: FDw4sBECwKPa10nssl3TmaWRXTgyTu
+  expire: 3600
+  region: cn-beijing # cn-hangzhou
+  role-session-name: dji-api
+  role-arn: acs:ram::1616476753647406:role/dji-cloud-oss-role # acs:ram::123456789:role/stsrole
+  bucket: cikian-file
+  object-dir-prefix: /
+
+ntp:
+  server:
+    host: Google.mzr.me
+
+# To create a license for an application: https://developer.dji.com/user/apps/#all
+cloud-api:
+  app:
+    id: 178429
+    key: 9c6659dbc56cf02a925ab283b3a443a
+    license: xrkuPyzMFid4jpwmag8jRlTrMYLPBgy+3jdMEJF/t0rOCl63N0xRb+p3LS6Z/0OWdzvkhTemUmYx8SHyqPlaSEvubuYsnFi349yYJmtZlxNjF49cYSnH3Xv/72ni+BZV3BxX/1vJ5Puzto59E/pqaZKkoIL0S+vyoVrIwQKeO54=
+
+livestream:
+  url:
+    #    # It is recommended to use a program to create Token. https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media/RtcTokenBuilder2.java
+    #    agora:
+    #      channel: Please enter the agora channel.
+    #      token: Please enter the agora temporary token.
+    #      uid:  654321
+    #
+    #    # RTMP  Note: This IP is the address of the streaming server. If you want to see livestream on web page, you need to convert the RTMP stream to WebRTC stream.
+    #    rtmp:
+    #      url: Please enter the rtmp access address.  # Example: 'rtmp://192.168.1.1/live/'
+    rtsp:
+      username: pilot
+      password: pilot123
+      port: 8554
+#
+#    # GB28181 Note:If you don't know what these parameters mean, you can go to Pilot2 and select the GB28181 page in the cloud platform. Where the parameters same as these parameters.
+#    gb28181:
+#      serverIP: Please enter the server ip.
+#      serverPort: Please enter the server port.
+#      serverID: Please enter the server id.
+#      agentID: Please enter the agent id.
+#      agentPassword: Please enter the agent password.
+#      localPort: Please enter the local port.
+#      channel: Please enter the channel.
+#
+#    # Webrtc: Only supports using whip standard
+#    whip:
+#      url: Please enter the rtmp access address. #  Example：http://192.168.1.1:1985/rtc/v1/whip/?app=live&stream=

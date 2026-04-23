@@ -1,5 +1,6 @@
 package org.jeecg.modules.slfh.equipment.airport.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.jeecg.common.system.vo.DictModel;
@@ -54,8 +55,11 @@ public class AirportServiceImpl extends ServiceImpl<AirportMapper, Airport> impl
             }
         }
 
+        JSONArray arr = new JSONArray();
+        arr.addAll(map.values());
+
         // 遍历map
-        res.putAll(map);
+        res.put("list", arr);
 
         return res;
     }

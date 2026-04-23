@@ -1,5 +1,16 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: jeecg-system
   profiles:
+    group:
+      "dev": "dev,dji-dev"
+      "prod": "prod,dji-prod"
     active: '@profile.name@'
+
+jwt:
+  issuer: DJI
+  subject: CloudApiSample
+  secret: CloudApiSample
+  age: 86400

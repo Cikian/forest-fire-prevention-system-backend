@@ -1,7 +1,10 @@
 package org.jeecg.modules.slfh.fxgl.fly.service;
 
+import com.alibaba.fastjson.JSONObject;
 import org.jeecg.modules.slfh.fxgl.fly.entity.SlfhFlyList;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Date;
 
 /**
  * @Description: 飞行管理-事件列表
@@ -10,5 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @Version: V1.0
  */
 public interface ISlfhFlyListService extends IService<SlfhFlyList> {
-
+    JSONObject getStatistics(Date startTime, Date endTime);
 }

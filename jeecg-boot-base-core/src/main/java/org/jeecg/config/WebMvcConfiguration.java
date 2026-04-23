@@ -81,14 +81,24 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration corsConfiguration = new CorsConfiguration();
-        //是否允许请求带有验证信息
+
+        // 1. 允许验证信息
         corsConfiguration.setAllowCredentials(true);
-        // 允许访问的客户端域名
+
+        // 2. 允许所有域名 (Jeecg 原有)
         corsConfiguration.addAllowedOriginPattern("*");
-        // 允许服务端访问的客户端请求头
+
+        // 3. 允许所有请求头 (这已经包含了大疆需要的 PARAM_TOKEN 和所有自定义头)
         corsConfiguration.addAllowedHeader("*");
-        // 允许访问的方法名,GET POST等
+
+        // 4. 允许所有方法
         corsConfiguration.addAllowedMethod("*");
+
+        // 5. 暴露 Header (如果大疆前端需要从响应头拿数据，这一步很重要)
+        // 大疆代码里主要是 Access-Control-Allow-Headers，Spring 会自动处理
+        // 如果有特殊需要，可以手动暴露：
+        // corsConfiguration.addExposedHeader("x-auth-token");
+
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
     }

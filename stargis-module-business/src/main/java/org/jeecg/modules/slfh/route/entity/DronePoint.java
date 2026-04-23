@@ -32,31 +32,31 @@ public class DronePoint implements Serializable {
      */
     @TableId(type = IdType.ASSIGN_ID)
     @ApiModelProperty(value = "主键")
-    private String id;
+    private java.lang.String id;
     /**
      * 创建人
      */
     @ApiModelProperty(value = "创建人")
-    private String createBy;
+    private java.lang.String createBy;
     /**
      * 创建日期
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "创建日期")
-    private Date createTime;
+    private java.util.Date createTime;
     /**
      * 更新人
      */
     @ApiModelProperty(value = "更新人")
-    private String updateBy;
+    private java.lang.String updateBy;
     /**
      * 更新日期
      */
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "更新日期")
-    private Date updateTime;
+    private java.util.Date updateTime;
     /**
      * 经度
      */
@@ -80,34 +80,77 @@ public class DronePoint implements Serializable {
      */
     @Excel(name = "飞行速度", width = 15)
     @ApiModelProperty(value = "飞行速度")
-    private Double speed;
+    private java.lang.Double speed;
     /**
      * 航点类型
      */
-    @Excel(name = "航点类型", width = 15)
+    @Excel(name = "航点类型", width = 15, dicCode = "point_type")
     @ApiModelProperty(value = "航点类型")
-    private String pointType;
+    private java.lang.String pointType;
     /**
      * 俯仰角
      */
     @Excel(name = "俯仰角", width = 15)
     @ApiModelProperty(value = "俯仰角")
-    private Integer pitch;
+    private java.lang.Integer pitch;
     /**
      * 偏航角
      */
     @Excel(name = "偏航角", width = 15)
     @ApiModelProperty(value = "偏航角")
-    private Integer yaw;
+    private java.lang.Integer yaw;
     /**
      * 排序
      */
     @Excel(name = "排序", width = 15)
     @ApiModelProperty(value = "排序")
-    private Integer sortOrder;
+    private java.lang.Integer sortOrder;
     /**
      * 外键
      */
     @ApiModelProperty(value = "外键")
-    private String mainId;
+    private java.lang.String mainId;
+    /**
+     * 变焦
+     */
+    @Excel(name = "变焦", width = 15)
+    @ApiModelProperty(value = "变焦")
+    private java.lang.Double zoom;
+    /**
+     * 开始录像
+     */
+    @Excel(name = "开始录像", width = 15)
+    @ApiModelProperty(value = "开始录像")
+    private java.lang.String onVideo;
+    /**
+     * 结束录像
+     */
+    @Excel(name = "结束录像", width = 15)
+    @ApiModelProperty(value = "结束录像")
+    private java.lang.String offVideo;
+    /**
+     * 拍照
+     */
+    @Excel(name = "拍照", width = 15)
+    @ApiModelProperty(value = "拍照")
+    private java.lang.String takePhoto;
+    /**
+     * 全景拍照
+     */
+    @Excel(name = "全景拍照", width = 15)
+    @ApiModelProperty(value = "全景拍照")
+    private java.lang.String panoramicPhoto;
+    /**
+     * 全景拍照
+     */
+    @Excel(name = "操作列表", width = 15)
+    @ApiModelProperty(value = "操作列表")
+    private java.lang.String actionList;
+    /**
+     * 悬停
+     */
+    @Excel(name = "悬停", width = 15)
+    @ApiModelProperty(value = "悬停")
+    private java.lang.Double hover;
+
 }

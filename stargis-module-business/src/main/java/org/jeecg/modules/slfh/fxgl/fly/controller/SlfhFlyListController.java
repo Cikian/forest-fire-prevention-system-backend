@@ -1,8 +1,12 @@
 package org.jeecg.modules.slfh.fxgl.fly.controller;
 
 import java.util.Arrays;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.fastjson.JSONObject;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.modules.slfh.fxgl.fly.entity.SlfhFlyList;
@@ -33,7 +37,7 @@ import org.jeecg.common.aspect.annotation.AutoLog;
 @Slf4j
 public class SlfhFlyListController extends JeecgController<SlfhFlyList, ISlfhFlyListService> {
 	@Autowired
-	private ISlfhFlyListService slfhFlyListService;
+	private ISlfhFlyListService flyListService;
 	
 	/**
 	 * 分页列表查询
@@ -53,7 +57,7 @@ public class SlfhFlyListController extends JeecgController<SlfhFlyList, ISlfhFly
 								   HttpServletRequest req) {
 		QueryWrapper<SlfhFlyList> queryWrapper = QueryGenerator.initQueryWrapper(slfhFlyList, req.getParameterMap());
 		Page<SlfhFlyList> page = new Page<SlfhFlyList>(pageNo, pageSize);
-		IPage<SlfhFlyList> pageList = slfhFlyListService.page(page, queryWrapper);
+		IPage<SlfhFlyList> pageList = flyListService.page(page, queryWrapper);
 		return Result.OK(pageList);
 	}
 	
@@ -68,7 +72,7 @@ public class SlfhFlyListController extends JeecgController<SlfhFlyList, ISlfhFly
 	//@RequiresPermissions("org.jeecg.modules.demo:slfh_fly_list:add")
 	@PostMapping(value = "/add")
 	public Result<String> add(@RequestBody SlfhFlyList slfhFlyList) {
-		slfhFlyListService.save(slfhFlyList);
+		flyListService.save(slfhFlyList);
 		return Result.OK("添加成功！");
 	}
 	
@@ -83,7 +87,7 @@ public class SlfhFlyListController extends JeecgController<SlfhFlyList, ISlfhFly
 	//@RequiresPermissions("org.jeecg.modules.demo:slfh_fly_list:edit")
 	@RequestMapping(value = "/edit", method = {RequestMethod.PUT,RequestMethod.POST})
 	public Result<String> edit(@RequestBody SlfhFlyList slfhFlyList) {
-		slfhFlyListService.updateById(slfhFlyList);
+		flyListService.updateById(slfhFlyList);
 		return Result.OK("编辑成功!");
 	}
 	
@@ -98,7 +102,7 @@ public class SlfhFlyListController extends JeecgController<SlfhFlyList, ISlfhFly
 	//@RequiresPermissions("org.jeecg.modules.demo:slfh_fly_list:delete")
 	@DeleteMapping(value = "/delete")
 	public Result<String> delete(@RequestParam(name="id",required=true) String id) {
-		slfhFlyListService.removeById(id);
+		flyListService.removeById(id);
 		return Result.OK("删除成功!");
 	}
 	
@@ -113,7 +117,7 @@ public class SlfhFlyListController extends JeecgController<SlfhFlyList, ISlfhFly
 	//@RequiresPermissions("org.jeecg.modules.demo:slfh_fly_list:deleteBatch")
 	@DeleteMapping(value = "/deleteBatch")
 	public Result<String> deleteBatch(@RequestParam(name="ids",required=true) String ids) {
-		this.slfhFlyListService.removeByIds(Arrays.asList(ids.split(",")));
+		this.flyListService.removeByIds(Arrays.asList(ids.split(",")));
 		return Result.OK("批量删除成功!");
 	}
 	
@@ -127,7 +131,7 @@ public class SlfhFlyListController extends JeecgController<SlfhFlyList, ISlfhFly
 	@ApiOperation(value="飞行管理-事件列表-通过id查询", notes="飞行管理-事件列表-通过id查询")
 	@GetMapping(value = "/queryById")
 	public Result<SlfhFlyList> queryById(@RequestParam(name="id",required=true) String id) {
-		SlfhFlyList slfhFlyList = slfhFlyListService.getById(id);
+		SlfhFlyList slfhFlyList = flyListService.getById(id);
 		if(slfhFlyList==null) {
 			return Result.error("未找到对应数据");
 		}
@@ -158,5 +162,31 @@ public class SlfhFlyListController extends JeecgController<SlfhFlyList, ISlfhFly
     public Result<?> importExcel(HttpServletRequest request, HttpServletResponse response) {
         return super.importExcel(request, response, SlfhFlyList.class);
     }
+
+	 @GetMapping("/statistics")
+	 @ApiOperation(value = "飞行事件统计", notes = "飞行事件统计")
+	 public Result<?> statistics(HttpServletRequest req,
+								 @RequestParam(name = "startTime", defaultValue = "-1") String startTime,
+								 @RequestParam(name = "endTime", defaultValue = "-1") String endTime
+								 ) {
+		Date startDate = null;
+		Date endDate = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		try {
+			if (!"-1".equals(startTime)) {
+				startDate = sdf.parse(startTime);
+			}
+			if (!"-1".equals(endTime)) {
+				endDate = sdf.parse(endTime);
+			}
+		} catch (Exception e) {
+			log.error("日期格式转换失败", e);
+			return Result.error("日期格式错误，请使用 yyyy-MM-dd HH:mm:ss 格式");
+		}
+
+		 JSONObject res = flyListService.getStatistics(startDate, endDate);
+		 return Result.OK(res);
+	 }
 
 }

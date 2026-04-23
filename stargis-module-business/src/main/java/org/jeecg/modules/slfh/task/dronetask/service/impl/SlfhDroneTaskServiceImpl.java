@@ -69,6 +69,7 @@ public class SlfhDroneTaskServiceImpl extends ServiceImpl<SlfhDroneTaskMapper, S
         QueryWrapper<SlfhDroneTask> queryWrapper =
                 QueryGenerator.initQueryWrapper(slfhDroneTask, req.getParameterMap());
 
+        queryWrapper.orderByDesc("create_time");//add by njli 2026.4.17 增加排序
         // 再加 name like
         if (StringUtils.isNotBlank(name)) {
             queryWrapper.lambda().like(SlfhDroneTask::getName, name);

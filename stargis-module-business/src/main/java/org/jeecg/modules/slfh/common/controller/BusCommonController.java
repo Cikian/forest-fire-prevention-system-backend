@@ -36,7 +36,7 @@ import java.util.List;
  * @see <a href="https://www.cikian.cn">https://www.cikian.cn</a>
  * @since 2025-10-10 17:29
  */
-@Api(tags = "通用API")
+@Api(tags = "自定义通用API")
 @RestController
 @RequestMapping("/api")
 @Slf4j

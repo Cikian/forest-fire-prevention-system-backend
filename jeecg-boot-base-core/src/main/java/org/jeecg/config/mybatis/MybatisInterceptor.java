@@ -125,7 +125,16 @@ public class MybatisInterceptor implements Interceptor {
 					}
 					if ("updateTime".equals(field.getName())) {
 						field.setAccessible(true);
-						field.set(parameter, new Date());
+						// 判断字段类型，根据类型赋不同的值
+						Class<?> fieldType = field.getType();
+						if (fieldType == Date.class) {
+							field.set(parameter, new Date());
+						} else if (fieldType == Long.class || fieldType == long.class) {
+							field.set(parameter, System.currentTimeMillis());
+						} else if (fieldType == String.class) {
+							// 如果是字符串，转成 yyyy-MM-dd HH:mm:ss
+							field.set(parameter, org.jeecg.common.util.DateUtils.now());
+						}
 						field.setAccessible(false);
 					}
 				} catch (Exception e) {

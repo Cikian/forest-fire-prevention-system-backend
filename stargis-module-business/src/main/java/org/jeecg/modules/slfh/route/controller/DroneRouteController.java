@@ -72,6 +72,7 @@ public class DroneRouteController {
                                                    @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
                                                    HttpServletRequest req) {
         QueryWrapper<DroneRoute> queryWrapper = QueryGenerator.initQueryWrapper(droneRoute, req.getParameterMap());
+        queryWrapper.orderByDesc("create_time");
         Page<DroneRoute> page = new Page<DroneRoute>(pageNo, pageSize);
         IPage<DroneRoute> pageList = routeService.page(page, queryWrapper);
         return Result.OK(pageList);

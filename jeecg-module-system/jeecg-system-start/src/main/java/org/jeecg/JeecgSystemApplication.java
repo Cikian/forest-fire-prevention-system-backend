@@ -18,8 +18,8 @@ import java.net.UnknownHostException;
 * 报错提醒: 未集成mongo报错，可以打开启动类上面的注释 exclude={MongoAutoConfiguration.class}
 */
 @Slf4j
-@SpringBootApplication
-@MapperScan("org.stargis.slfh")
+@SpringBootApplication(scanBasePackages = {"org.jeecg", "com.dji"})
+@MapperScan(value = {"org.jeecg.modules.**.mapper*", "com.dji.**.mapper*"})
 //@EnableAutoConfiguration(exclude={MongoAutoConfiguration.class})
 public class JeecgSystemApplication extends SpringBootServletInitializer {
 
